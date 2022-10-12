@@ -11,12 +11,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  dynamic a;
+
   @override
   void initState() {
     super.initState();
     BannerAds();
     InterstitialAds();
     RewardAds();
+    OpenAdd();
   }
 
   @override
@@ -64,6 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             content: Text("${reward.amount}"),
                           ),
                         );
+                        setState((){
+                          a = reward.amount;
+
+                        });
                       },
                     );
                     RewardAds();
@@ -72,28 +80,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 },
                 child: Text("rewardAd")),
-            // GestureDetector(
-            //   onTap: () {
-            //     if (InterstitialAd != null) {
-            //       rewardedAd!.show(
-            //         onUserEarnedReward: (ad, reward) {
-            //           Container(
-            //             child: Text("${reward.amount}"),
-            //           );
-            //         },
-            //       );
-            //       RewardAds();
-            //     } else {
-            //       RewardAds();
-            //     }
-            //   },
-            //   child: Container(
-            //     height: 100,
-            //     width: 100,
-            //     color: Colors.blue,
-            //     child: Text("${reward.}"),
-            //   ),
-            // ),
+            Container(
+              child: Text("${a}"),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  if (AppOpenAd != null) {
+                    appOpenAd!.show();
+                    OpenAdd();
+                  } else {
+                    OpenAdd();
+                  }
+                },
+                child: Text("interstialAd")),
           ],
         ),
       ),
